@@ -1,0 +1,26 @@
+<div class="w-100 py-2 px-5 bg-primary position-fixed">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class=""> <a class="link-underline link-underline-opacity-0" routerLink="/signin">
+        <img src="assets\imgs\logo.PNG" alt="logo">
+      </a>
+
+      </div>
+      <div *ngIf="!isSigned()">
+        <a routerLink="/signin" class="text-white fs-6 pe-4 link-underline link-underline-opacity-0">
+          <i class="fa-solid fa-lock text-white fs-6 pe-2"></i>
+          Sign in</a>
+        <a routerLink="/signup" class="text-white fs-6 link-underline link-underline-opacity-0">
+          <i class="fa-solid fa-user-plus text-white fs-6 pe-2"></i>
+          Sign up
+        </a>
+      </div>
+      <div *ngIf="isSigned()">
+        <a (click)="signOut()"  class="pointer text-white fs-6 pe-4 link-underline link-underline-opacity-0">
+          <i class="fa-solid fa-lock text-white fs-6 pe-2"></i>
+          Sign out</a>
+      </div>
+    </div>
+  </div>
+
+</div>

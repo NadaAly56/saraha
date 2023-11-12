@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row min-vh-100 w-100 justify-content-center align-items-center align-content-center text-center">
+
+      <h2 class="text-uppercase">Sign In</h2>
+      <form class="w-50 mt-4"
+      [formGroup]="signInForm"
+      (ngSubmit)="signIn()"
+      >
+        <!-- Email input -->
+          <div *ngIf="msg!=''" class="p-1 my-1 alert alert-danger">
+            <p class="m-0">{{msg}}</p>
+          </div>
+        <div class="form-outline mb-4">
+          <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" />
+          <div *ngIf="signInForm.get('email')?.errors && signInForm.get('email')?.touched" class="alert alert-info p-2 my-1">
+            <p *ngIf="signInForm.get('email')?.getError('required')" class="m-0">Enter your email</p>
+            <p *ngIf="signInForm.get('email')?.getError('email')" class="m-0">Enter right email</p>
+          </div>
+        </div>
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <input type="password" formControlName="password" class="form-control" placeholder="Enter your password" />
+          <div *ngIf="signInForm.get('password')?.errors && signInForm.get('password')?.touched" class="alert alert-info p-2 my-1">
+            <p *ngIf="signInForm.get('password')?.getError('required')" class="m-0">Enter your password</p>
+            <p *ngIf="signInForm.get('password')?.getError('pattern')" class="m-0">Enter right password</p>
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit"
+        [disabled]="signInForm.invalid"
+         class="btn btn-primary btn-block mb-4 w-100">Sign in</button>
+
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>Not a member? <a routerLink="/signup">Register</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+

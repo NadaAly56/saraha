@@ -1,0 +1,68 @@
+<div class="container min-vh-100 pt-5">
+  <div class="row my-5 w-100 justify-content-end">
+  <button
+    class="btn btn-primary w-25 mb-3link-underline link-underline-opacity-0" data-bs-toggle="modal" data-bs-target="#link"
+    >Share your profile</button>
+    </div>
+  <div class="row justify-content-start align-content-center flex-column text-center">
+    <div class="d-flex justify-content-center text-info" *ngIf="isLoading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div class="col-md-12 h-50 text-center"  *ngIf="!isLoading && msgArr.length <=0">
+      <h1 class="">You don't have any Messages</h1>
+    </div>
+    <div *ngFor="let msg of msgArr" class="col-12 mb-3">
+      <div class="bg-white border  p-4 w-50 mx-auto rounded-top rounded-end">
+        <a (click)="getID(msg._id)" class="pointer link-underline link-underline-opacity-0" data-bs-toggle="modal" data-bs-target="#delete" >
+          <i class="fa-solid fa-trash-can text-primary float-start"></i>
+        </a>
+
+        <hr class="my-4">
+        <p class="text-secondary text-center">
+          {{msg.message}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Confirmation</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Are you sure you want to delete?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button #closeDelete type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteMsg(id)">Delete</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- getLinkModal -->
+
+<div class="modal fade" id="link" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Get Link</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>{{link}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button #closeDelete type="button" class="btn btn-primary" data-bs-dismiss="modal"  [cdkCopyToClipboard]="link">copy</button>
+        </div>
+      </div>
+  </div>
+</div>
